@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Hakkimizda from "./pages/Hakkimizda";
+import Anasayfa from "./pages/Anasayfa";
+import Avukat from "./pages/Avukat";
+import Hastane from "./pages/Hastane";
+import Kuafor from "./pages/Kuafor";
+import Randevularim from "./pages/Randevular";
+import { ToastContainer } from "react-toastify";
+import { PostContextProvider } from "./context/PostContext";
+import { GetContextProvider } from "./context/GetContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <PostContextProvider>
+      <GetContextProvider>
+        <Router>
+          <ToastContainer />
+          <Routes>
+            <Route path="/" element={<Anasayfa />}></Route>
+            <Route path="/hakkimizda" element={<Hakkimizda />}></Route>
+            <Route path="/randevu/avukat" element={<Avukat />}></Route>
+            <Route path="/randevu/hastane" element={<Hastane />}></Route>
+            <Route path="/randevu/kuafor" element={<Kuafor />}></Route>
+            <Route path="/randevularim" element={<Randevularim />}></Route>
+          </Routes>
+        </Router>
+      </GetContextProvider>
+    </PostContextProvider>
   );
 }
-
 export default App;
