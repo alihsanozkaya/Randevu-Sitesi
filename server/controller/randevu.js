@@ -12,6 +12,7 @@ const getAll = async(req, res) => {
 const getSingle = async(req, res) => {
     try {
         const randevu = await Randevu.findById(req.params.id)
+        res.status(200).json(randevu)
     } catch (error) {
         res.status(500).json({message: error})
     }
